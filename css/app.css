@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 body {
-    background-image: url(/img/one.jpeg);
+    background-image: url(../img/one.jpeg);
     text-align: center;
 }
 h1 {

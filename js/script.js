@@ -88,10 +88,17 @@ function setRandomMines() {
     }
 }
 
+function setMinesNegs() {
+    for (var i = 0; i < gSelectedLevel.size; i++) {
+        for (var j = 0; j < gSelectedLevel.size; j++) {
+            gBoard[i][j].minesArountCount = countNeighbors(i, j, gBoard);
+        }
+    }
+}
+
 function renderCell(location, value) {
     var elCell = document.querySelector(`.cell${location.i}-${location.j}`);
     elCell.innerHTML = value;
-
 }
 
 function cellClicked(elCell, i, j) {
@@ -121,6 +128,13 @@ function renderLevel() {
     elLevelTable.innerHTML = strHtml;
 }
 
+function checkGameOver() {
+    if (gGame.shownCount + gGame.markedCount === gSelectedLevel.size ** 2) {
+        console.log('YOU WON!');
+        document.querySelector(".smiley").innerText = WIN;
+    } else console.log('YOU LOSE...');
+    document.querySelector(".smiley").innerText = LOSE;
+}
 
 function createLevelList() {
     gLevels.push(createLevel(0, 'Beginner', 4, 2, true));
@@ -157,7 +171,7 @@ function createLevel(id, name, size, mines, isSelected) {
     }
 }
 
-function expandShown(elCell, i, j) {
+function expandShown(board, i, j) {
     var cellI = i;
     var cellJ = j;
     if (gBoard[i][j].minesArountCount === 0) {
@@ -207,8 +221,16 @@ function getRandomInteger(min, max) {
     }
     return num;
 }
+// function startTimer(selector) {
+//     var startTime = Date.now();
+//     gGameInterval = setInterval(function renderTime() {
+//         var currTime = Date.now();
+//         var timePassed = currTime - startTime;
+//         var seconds = ((timePassed % 60000) / 1000).toFixed(3);
+//         document.querySelector(`${selector}`).innerText = seconds;
+//     }, 1);
+// }
 // function setMinesNegsCount(board)
 
 // function cellMarked(elCell) 
 // function checkGameOver() 
-// function expandShown(board, elCell, i, j)
