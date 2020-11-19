@@ -1,0 +1,56 @@
+*{
+    box-sizing: border-box;
+}
+body {
+    background-image: url(/img/one.jpeg);
+    text-align: center;
+}
+h1 {
+    color: cornsilk;
+    font-size: 50px;
+}
+
+.board {
+    height: 400px;
+    width: 400px;
+    margin: auto;
+    background-color: rgb(104, 73, 119);
+}
+
+.smile {
+    width: 40px;
+    height: 40px;
+   
+}
+h2{
+    text-align: center;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    padding-top: 0;
+}
+.level{
+    width: 300px;
+    height: 40px;
+    background-color: cornsilk;
+}
+body>div.levels>button {
+    display: inline-block;
+    font-size: 30px;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
+.cell {
+    width: 33px;
+    height: 33px;
+    margin: 0;
+    text-align: center;
+
+    border: 1px solid rgb(91, 67, 105);
+    border-radius: 10%;
+    background-color: rgb(255, 255, 255);
+}
