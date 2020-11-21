@@ -9,6 +9,15 @@ h1 {
     color: cornsilk;
     font-size: 50px;
 }
+h2 {
+    color: cornsilk;
+    font-size: 50px;
+}
+
+p{
+    color: azure;
+    font-size: 20px;
+}
 
 .board {
     height: 400px;
@@ -30,8 +39,13 @@ h2{
 }
 .level{
     width: 300px;
-    height: 40px;
+    height: 30px;
+    margin-top: 0px;
+    margin-bottom: 4px;
     background-color: cornsilk;
+    display: inline-block;
+    vertical-align:middle;
+
 }
 body>div.levels>button {
     display: inline-block;
@@ -53,4 +67,8 @@ body>div.levels>button {
     border: 1px solid rgb(91, 67, 105);
     border-radius: 10%;
     background-color: rgb(255, 255, 255);
+}
+
+.close-cell:hover {
+    background: rgba(175, 113, 211, 0.109)
 }

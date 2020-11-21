@@ -5,6 +5,7 @@ const FLAG = '⛳';
 const EMPTY = ' ';
 const SMILY = '😊';
 const WIN = '😁';
+const LOSE = '😭';
 
 var gLevels = [];
 var gBoard = [];
@@ -55,7 +56,7 @@ function buildBoard() {
 
     for (var i = 0; i < gSelectedLevel.size; i++) {
         for (var j = 0; j < gSelectedLevel.size; j++) {
-            board[i][j].minesArountCount = countNeighbors(i, j, board);
+            board[i][j].minesAroundCount = countNeighbors(i, j, board);
         }
     return board;
 }
@@ -91,17 +92,17 @@ function setRandomMines() {
 function setMinesNegs() {
     for (var i = 0; i < gSelectedLevel.size; i++) {
         for (var j = 0; j < gSelectedLevel.size; j++) {
-            gBoard[i][j].minesArountCount = countNeighbors(i, j, gBoard);
+            gBoard[i][j].minesAroundCount = countNeighbors(i, j, gBoard);
         }
     }
 }
 
 function renderCell(location, value) {
-    var elCell = document.querySelector(`.cell${location.i}-${location.j}`);
+    var elCell = document.querySelector(`.cell-${location.i}-${location.j}`);
     elCell.innerHTML = value;
 }
 
-function cellClicked(elCell, i, j) {
+function cellClicked(board, i, j) {
     gCounter++;
     if (gCounter === 2) {
         setRandomMines();
@@ -114,7 +115,7 @@ function cellClicked(elCell, i, j) {
             gGame.isOn = false;
             checkGameOver();
         } else {
-            expandShown(elCell, i, j)
+            expandShown(board, i, j)
         }
     } else return;
 }
@@ -131,9 +132,9 @@ function renderLevel() {
 function checkGameOver() {
     if (gGame.shownCount + gGame.markedCount === gSelectedLevel.size ** 2) {
         console.log('YOU WON!');
-        document.querySelector(".smiley").innerText = WIN;
+        document.querySelector(".smile").innerText = WIN;
     } else console.log('YOU LOSE...');
-    document.querySelector(".smiley").innerText = LOSE;
+    document.querySelector(".smile").innerText = LOSE;
 }
 
 function createLevelList() {
@@ -174,7 +175,8 @@ function createLevel(id, name, size, mines, isSelected) {
 function expandShown(board, i, j) {
     var cellI = i;
     var cellJ = j;
-    if (gBoard[i][j].minesArountCount === 0) {
+    if (gBoard[i][j].minesAroundCount === 0) {
+        console.log('hi');
         for (var i = cellI - 1; i <= cellI + 1; i++) {
             if (i < 0 || i >= gSelectedLevel.size) continue;
             for (var j = cellJ - 1; j <= cellJ + 1; j++) {
@@ -184,8 +186,9 @@ function expandShown(board, i, j) {
         }
         renderBoard();
     } else {
+        console.log('hi2');
         gBoard[i][j].isShown = true;
-        renderCell({ i, j }, gBoard[i][j].minesArountCount);
+        renderCell({ i, j }, gBoard[i][j].minesAroundCount);
     }
 }
 
